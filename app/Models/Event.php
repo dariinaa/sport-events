@@ -35,6 +35,16 @@ class Event extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+	
+	public function sports()
+    {
+        return $this->belongsToMany(Sport::class, 'event_sport','event_id', 'sport_id');
+    }
+	
+	public function organisators()
+    {
+        return $this->belongsToMany(Organisator::class, 'event_organisator','event_id', 'organisator_id');
+    }
 
     /*
     |--------------------------------------------------------------------------

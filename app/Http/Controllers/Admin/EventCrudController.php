@@ -29,6 +29,8 @@ class EventCrudController extends CrudController
         CRUD::setModel(\App\Models\Event::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/event');
         CRUD::setEntityNameStrings('event', 'events');
+		
+		$this->crud->addFields($this->getFieldsData());
     }
 
     /**
@@ -40,6 +42,7 @@ class EventCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::setFromDb(); // set columns from db columns.
+        $this->crud->addColumns($this->getFieldsData(TRUE));
 
         /**
          * Columns can be defined using the fluent syntax:
@@ -73,5 +76,39 @@ class EventCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+	
+	private function getFieldsData($show = false) 
+	{
+		return 
+		[
+		[
+            'label'     => "Organisators",
+            'type'      => ($show ? "select" : 'select_multiple'),
+            'name'      => 'organisators',
+            'entity'    => 'organisators',
+            'model'     => "App\Models\Organisator",
+            'attribute' => 'name',
+            'pivot'     => true,
+        ],
+		[
+            'label'     => "Sports",
+            'type'      => ($show ? "select" : 'select_multiple'),
+            'name'      => 'sports',
+            'entity'    => 'sports',
+            'model'     => "App\Models\Sport",
+            'attribute' => 'name',
+            'pivot'     => true,
+        ],
+		];
+	}
+	
+	protected function setupShowOperation()
+    {
+        // by default the Show operation will try to show all columns in the db table,
+        // but we can easily take over, and have full control of what columns are shown,
+        // by changing this config for the Show operation
+        CRUD::setFromDb();
+        $this->crud->addColumns($this->getFieldsData(TRUE));
     }
 }

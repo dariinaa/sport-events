@@ -40,7 +40,6 @@ class OrganisatorCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::setFromDb(); // set columns from db columns.
-
         /**
          * Columns can be defined using the fluent syntax:
          * - CRUD::column('price')->type('number');
@@ -73,5 +72,13 @@ class OrganisatorCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+	
+		protected function setupShowOperation()
+    {
+        // by default the Show operation will try to show all columns in the db table,
+        // but we can easily take over, and have full control of what columns are shown,
+        // by changing this config for the Show operation
+        CRUD::setFromDb();
     }
 }
