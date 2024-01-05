@@ -25,8 +25,8 @@ class SportRequest extends FormRequest
     public function rules()
     {
         return [
-		'name' => 'required|string|unique:sports|max:20',
-        'image' => 'nullable|url|max:255',
+		'name' => 'required|string|max:20',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:1024',
         'description' => 'nullable|string|max:1000',
         'season' => 'nullable|string|max:20',
         'players_count' => 'nullable|integer|min:1',

@@ -29,6 +29,8 @@ class SportCrudController extends CrudController
         CRUD::setModel(\App\Models\Sport::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/sport');
         CRUD::setEntityNameStrings('sport', 'sports');
+		
+		$this->crud->addFields($this->getFieldsData());
     }
 
     /**
@@ -39,8 +41,8 @@ class SportCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::setFromDb(); // set columns from db columns.
-
+		CRUD::column('name')->type('string');
+		$this->crud->addColumns($this->getFieldsData(TRUE));
         /**
          * Columns can be defined using the fluent syntax:
          * - CRUD::column('price')->type('number');
@@ -63,7 +65,21 @@ class SportCrudController extends CrudController
          * - CRUD::field('price')->type('number');
          */
     }
-
+	
+	private function getFieldsData($show = FALSE)
+	{
+		return
+		[
+		[
+		'label' => "Image",
+		'name' => "image",
+		'type' => ($show ? 'view' : 'upload'),
+		'view' => 'partials/image',
+		'upload' => true,
+		]
+		];
+	}
+	
     /**
      * Define what happens when the Update operation is loaded.
      * 
@@ -73,5 +89,17 @@ class SportCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+	
+	protected function setupShowOperation()
+    {
+        // by default the Show operation will try to show all columns in the db table,
+        // but we can easily take over, and have full control of what columns are shown,
+        // by changing this config for the Show operation
+		CRUD::column('name')->type('string');
+		CRUD::column('players_count')->type('integer');
+		CRUD::column('describtion')->type('text')->limit(1000);;
+		CRUD::column('season')->type('string');
+        $this->crud->addColumns($this->getFieldsData(TRUE));
     }
 }
