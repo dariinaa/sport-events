@@ -68,8 +68,16 @@ class SportCrudController extends CrudController
 	
 	private function getFieldsData($show = FALSE)
 	{
+		$seasonOptions = ['summer' => 'Summer', 'winter' => 'Winter', 'all year' => 'All Year'];
+
 		return
 		[
+		[
+		'name' => 'season',
+		'label' => 'Season',
+		'type' => 'select_from_array',
+		'options' => $seasonOptions,
+        ],
 		[
 		'label' => "Image",
 		'name' => "image",

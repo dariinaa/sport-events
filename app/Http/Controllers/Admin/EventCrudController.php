@@ -111,4 +111,10 @@ class EventCrudController extends CrudController
         CRUD::setFromDb();
         $this->crud->addColumns($this->getFieldsData(TRUE));
     }
+	
+	protected function setupSearchOperation()
+	{
+		$this->crud->addSearchField('name');
+		$this->crud->addSearchField('location');
+	}
 }
