@@ -22,24 +22,50 @@
 </style>
     <h1>{{$title}}</h1>
 
-<form action="{{ route('events.index') }}" method="get">
-    <label for="name">Event Name:</label>
-    <input type="text" name="name" id="name" value="{{ request('name') }}">
-    
-    <label for="beginning_date">Start Date:</label>
-    <input type="date" name="beginning_date" id="beginning_date" value="{{ request('beginning_date') }}">
-    
-    <label for="end_date">End Date:</label>
-    <input type="date" name="end_date" id="end_date" value="{{ request('end_date') }}">
+<form action="{{ route('events.index') }}" method="get" class="search-form">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="name">Event Name:</label>
+            <input type="text" name="name" id="name" value="{{ request('name') }}" class="form-control">
+        </div>
 
-    <label for="organisators">Organisators:</label>
-    <input type="text" name="organisators" id="organisators" value="{{ request('organisators') }}">
+        <div class="form-group col-md-6">
+            <label for="beginning_date">Start Date:</label>
+            <input type="date" name="beginning_date" id="beginning_date" value="{{ request('beginning_date') }}" class="form-control">
+        </div>
+    </div>
 
-    <label for="sports">Sports:</label>
-    <input type="text" name="sports" id="sports" value="{{ request('sports') }}">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="end_date">End Date:</label>
+            <input type="date" name="end_date" id="end_date" value="{{ request('end_date') }}" class="form-control">
+        </div>
 
-    <button type="submit">Search</button>
+        <div class="form-group col-md-6">
+            <label for="organisators">Organizers:</label>
+            <input type="text" name="organisators" id="organisators" value="{{ request('organisators') }}" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="sports">Sports:</label>
+            <input type="text" name="sports" id="sports" value="{{ request('sports') }}" class="form-control">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="sort_direction">Sort Direction (sorted by creation date):</label>
+            <select name="sort_direction" id="sort_direction" class="form-control">
+                <option value="asc" {{ request('sort_direction') === 'asc' ? 'selected' : '' }}>Ascending</option>
+                <option value="desc" {{ request('sort_direction') === 'desc' ? 'selected' : '' }}>Descending</option>
+            </select>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Search</button>
 </form>
+
+
 	
     <table>
         <thead>

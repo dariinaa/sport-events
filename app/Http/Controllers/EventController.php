@@ -10,49 +10,65 @@ use App\Models\Sport;
 class EventController extends Controller
 {
     public function index(Request $request)
-	{
-    $query = Event::query();
-	
-	$organisatorsList = Organisator::all();
-	$sportsList = Sport::all();
+    {
+        $query = Event::query();
+        $organisatorsList = Organisator::all();
+        $sportsList = Sport::all();
 
-    if ($request->filled('name')) {
-        $query->where('name', 'like', '%' . $request->input('name') . '%');
+        $this->applySorting($query, $request->input('sort_direction', 'desc'));
+        $this->applyNameFilter($query, $request->input('name'));
+        $this->applyDateFilters($query, $request->input('beginning_date'), $request->input('end_date'));
+        $this->applyOrganisatorFilter($query, $request->input('organisators'));
+        $this->applySportFilter($query, $request->input('sports'));
+
+        $events = $query->get();
+
+        return view('events', [
+            'events' => $events,
+            'title' => 'Events',
+            'organisatorsList' => $organisatorsList,
+            'sportsList' => $sportsList,
+        ]);
     }
 
-    if ($request->filled('beginning_date')) {
-        $query->whereDate('beginning_date', '=', $request->input('beginning_date'));
+    private function applySorting($query, $sortDirection)
+    {
+        $query->orderBy('created_at', $sortDirection);
     }
 
-    if ($request->filled('end_date')) {
-        $query->whereDate('end_date', '=', $request->input('end_date'));
+    private function applyNameFilter($query, $name)
+    {
+        if ($name) {
+            $query->where('name', 'like', '%' . $name . '%');
+        }
     }
-	
-	$events = $query->get();
 
-    if ($request->filled('organisators')) {
-        $organisatorName = $request->input('organisators');
-        $events = $events->filter(function ($event) use ($organisatorName) {
-            $organisators = $event->organisators->pluck('name')->toArray();
-            return array_filter($organisators, function ($organisator) use ($organisatorName) {
-                return stripos($organisator, $organisatorName) !== false;
+    private function applyDateFilters($query, $beginningDate, $endDate)
+    {
+        if ($beginningDate) {
+            $query->whereDate('beginning_date', '=', $beginningDate);
+        }
+
+        if ($endDate) {
+            $query->whereDate('end_date', '=', $endDate);
+        }
+    }
+
+    private function applyOrganisatorFilter($query, $organisatorName)
+    {
+        if ($organisatorName) {
+            $query->whereHas('organisators', function ($organisatorQuery) use ($organisatorName) {
+                $organisatorQuery->where('name', 'like', '%' . $organisatorName . '%');
             });
-        });
+        }
     }
 
-    if ($request->filled('sports')) {
-        $selectedSportName = $request->input('sports');
-        $events = $events->filter(function ($event) use ($selectedSportName) {
-            $sports = $event->sports->pluck('name')->toArray();
-            return in_array($selectedSportName, $sports);
-        });
+    private function applySportFilter($query, $selectedSportName)
+    {
+        if ($selectedSportName) {
+            $query->whereHas('sports', function ($sportQuery) use ($selectedSportName) {
+                $sportQuery->where('name', '=', $selectedSportName);
+            });
+        }
     }
-
-    return view('events', [
-        'events' => $events,
-        'title' => 'Events',
-		'organisatorsList' => $organisatorsList,
-		'sportsList' => $sportsList,
-    ]);
-	}
 }
