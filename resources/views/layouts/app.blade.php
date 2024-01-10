@@ -47,18 +47,18 @@
 
             <div class="collapse navbar-collapse sub-menu-bar" id="navbarNine">
               <ul class="navbar-nav me-auto">
+			  <li class="nav-item">
+				  <a href="{{ url('/') }}">Home Page</a>
+                </li>
                 <li class="nav-item">
                   <a href="{{ route('events.index') }}">Events</a>
                 </li>
                 <li class="nav-item">
-                  <a class="page-scroll" href="#services">Services</a>
+                  <a href="{{ route('organisators.index') }}">Organisators</a>
                 </li>
 
                 <li class="nav-item">
-                  <a class="page-scroll" href="#pricing">Pricing</a>
-                </li>
-                <li class="nav-item">
-                  <a class="page-scroll" href="#contact">Contact</a>
+                  <a href="{{ route('sports.index') }}">Sports</a>
                 </li>
               </ul>
             </div>

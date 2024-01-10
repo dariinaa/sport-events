@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\OrganisatorController;
+use App\Http\Controllers\SportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +24,7 @@ Route::get('/', function () {
 Route::get('/', [IndexController::class, 'index']);
 
 Route::get('/events', [EventController::class, 'index'])->name('events.index');
+
+Route::get('/organisators', [OrganisatorController::class, 'index'])->name('organisators.index');
+
+Route::get('/sports', [SportController::class, 'index'])->name('sports.index');
