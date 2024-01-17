@@ -1,25 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
 
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
+<head><link rel="stylesheet" href="assets/myStyle.css" /></head>
 
-        th {
-            border-bottom: 1px solid #ddd;
-        }
-
-        td {
-            border-bottom: 1px solid #ddd;
-        }
-</style>
+<div class="data-table-container">
     <h1>{{$title}}</h1>
 	
 <form action="{{ route('sports.index') }}" method="get" class="search-form">
@@ -58,4 +43,5 @@
             @endforeach
         </tbody>
     </table>
+</div>
 @endsection

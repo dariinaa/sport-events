@@ -17,7 +17,7 @@ class OrganisatorsTableSeeder extends Seeder
 
         DB::table('organisators')->insert([
             [
-                'name' => 'Елена Иванова',
+                'name' => 'Samantha Dawson',
                 'phone_number' => '0889876756',
                 'email' => 'organisator1@example.com',
                 'website' => 'http://www.organisator1.com',
@@ -25,7 +25,7 @@ class OrganisatorsTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Мария Пеева',
+                'name' => 'Karina Todorova',
                 'phone_number' => '0889876565',
                 'email' => 'organisator2@example.com',
                 'website' => 'http://www.organisator2.com',
@@ -33,7 +33,7 @@ class OrganisatorsTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
 			[
-                'name' => 'Красимира Георгиева',
+                'name' => 'Julia Simons',
                 'phone_number' => '0889876756',
                 'email' => 'organisator3@example.com',
                 'website' => 'http://www.organisator3.com',
@@ -41,7 +41,7 @@ class OrganisatorsTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Венелина Стойчева',
+                'name' => 'Katy Watson',
                 'phone_number' => '0889876565',
                 'email' => 'organisator4@example.com',
                 'website' => 'http://www.organisator4.com',
@@ -49,7 +49,7 @@ class OrganisatorsTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
 			[
-                'name' => 'Катрин Великова',
+                'name' => 'Jenna Everdeen',
                 'phone_number' => '0889876565',
                 'email' => 'organisator5@example.com',
                 'website' => 'http://www.organisator5.com',

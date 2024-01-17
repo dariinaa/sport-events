@@ -7,7 +7,7 @@
         font-family: 'Georgia', serif; 
     }
 
-    .admin-panel {
+    .dashboard-container .admin-panel {
         max-width: 800px;
         margin: 50px auto;
         padding: 20px;
@@ -17,12 +17,15 @@
         text-align: center;
     }
 
-    h1 {
+    .dashboard-container h1 {
         color: #9370db; 
     }
 </style>
 
+<div class="dashboard-container">
 <div class="admin-panel">
     <h1>WELCOME TO THE ADMIN PANEL OF SPORT EVENTS!</h1>
 </div>
+</div>
+
 @endsection

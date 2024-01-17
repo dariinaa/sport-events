@@ -1,28 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-<style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
 
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
+<head><link rel="stylesheet" href="assets/myStyle.css" /></head>
 
-        th {
-            border-bottom: 1px solid #ddd;
-        }
-
-        td {
-            border-bottom: 1px solid #ddd;
-        }
-</style>
+<div class="data-table-container">
     <h1>{{$title}}</h1>
 
 <form action="{{ route('events.index') }}" method="get" class="search-form">
+
+@if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+@endif
+
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="name">Event Name:</label>
@@ -42,7 +38,7 @@
         </div>
 
         <div class="form-group col-md-6">
-            <label for="organisators">Organizers:</label>
+            <label for="organisators">Organisators:</label>
             <input type="text" name="organisators" id="organisators" value="{{ request('organisators') }}" class="form-control">
         </div>
     </div>
@@ -63,9 +59,8 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Search</button>
+
 </form>
-
-
 	
     <table>
         <thead>
@@ -101,4 +96,5 @@
             @endforeach
         </tbody>
     </table>
+</div>
 @endsection

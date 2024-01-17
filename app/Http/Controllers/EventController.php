@@ -11,6 +11,21 @@ class EventController extends Controller
 {
     public function index(Request $request)
     {
+        $request->validate([
+            'name' => 'nullable|string|max:255',
+            'beginning_date' => 'nullable|date',
+            'end_date' => 'nullable|date|after_or_equal:beginning_date',
+            'organisators' => 'nullable|string|max:255',
+            'sports' => 'nullable|string|max:255',
+        ]);
+
+        $messages = [
+            'name.max' => 'Name input is too long.',
+            'end_date.after_or_equal' => 'End date must be equal to or after the beginning date.',
+            'organisators.max' => 'Organisators input is too long.',
+            'sports.max' => 'Sports input is too long.',
+        ];
+        
         $query = Event::query();
         $organisatorsList = Organisator::all();
         $sportsList = Sport::all();

@@ -30,6 +30,7 @@ class SportsTableSeeder extends Seeder
                 'players_count' => 22,
                 'created_at' => now(),
                 'updated_at' => now(),
+				'image' => 'storage/sports/7439eb32b5d83852f982fe60daaf6fad.jpg'
             ],
             [
                 'name' => 'Basketball',
@@ -38,6 +39,7 @@ class SportsTableSeeder extends Seeder
                 'players_count' => 10,
                 'created_at' => now(),
                 'updated_at' => now(),
+				'image' => 'storage/sports/140e8e359351d069304a09a24652b585.jpg'
             ],
 			[
 				'name' => 'Beach volleyball',
@@ -46,6 +48,7 @@ class SportsTableSeeder extends Seeder
 				'players_count' => 10,
 				'created_at' => now(),
 				'updated_at' => now(),
+				'image' => 'storage/sports/f65bcad50ee7a5a8c3bf378072bc91b9.jpg'
 			],
 			[
 				'name' => 'Tennis',
@@ -54,6 +57,7 @@ class SportsTableSeeder extends Seeder
 				'players_count' => 2,
 				'created_at' => now(),
 				'updated_at' => now(),
+				'image' => 'storage/sports/df1ce0afa586139b3f8ef37eba3212c2.jpg'
 			],
 			[
 				'name' => 'Skiing',
@@ -62,6 +66,7 @@ class SportsTableSeeder extends Seeder
 				'players_count' => null, 
 				'created_at' => now(),
 				'updated_at' => now(),
+				'image' => 'storage/sports/c6606b0e803618b92105403d045f003b.jpg'
 			],
 		]);
     }

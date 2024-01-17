@@ -1,0 +1,18 @@
+.data-table-container table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.data-table-container th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+.data-table-container th {
+  border-bottom: 1px solid #ddd;
+}
+
+.data-table-container td {
+  border-bottom: 1px solid #ddd;
+}
+

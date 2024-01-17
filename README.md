@@ -1,4 +1,24 @@
-# Sport Events
+# Sport Events - en
+
+## Description
+Sport Events is an application based on Laravel Backpack that provides a convenient way to browse information related to sport events. It is licensed MIT.
+
+## Administrative Panel
+The administrative panel of "Sport Events" provides access to the full functionality of the application. The panel allows the editing of the main entities, including adding, deleting, and editing existing records. New users can also be added through the panel.
+
+## Structure
+The main entities in the system are sports, organisators, and events. The sports table stores basic information about different sports. The organisators table contains information about the organisators of various events, and the events table stores data about specific events. The sports table is connected to the events table through the pivot table event_sport, using a many-to-many relationship. Similarly, events and organisators are connected through the pivot table event_organisator, again using a many-to-many relationship. Each of the main and pivot tables has a generated migration file, as well as a seed for populating the database with test data to try out the application's functionalities. Appropriate data types have been used to represent the data in a practical way. Emphasis has been placed on data validation, with each main table having a Request class containing the validation logic.
+
+## Features
+### Administrative Panel
+The administrative panel provides an easy way to interact with the data in the database. It allows for convenient storage of images in the sports table, with a focus on validation. Editing objects from the database in the admin panel is made user-friendly, with appropriately selected data entry fields, including some dropdown menus.
+
+### Public Section
+While the administrative panel is accessible only to authenticated users, the public section of the application can be used by absolutely anyone. A simple template has been implemented for user convenience. Through the controllers EventController, SportController, OrganisatorController, functionality has been provided to present the user with the desired data in a simplified manner. The public section has a home page serving as an introduction to Sport Events. The menu contains the following links: Home Page, Events, Organisators, Sports. Each of the navigation links (except Home Page, which redirects to the initial page) leads to the corresponding view, visualizing the records from the database table. The data can be visualized according to the user's requirements - they can be sorted in ascending or descending order based on the upload date. Additionally, data from the events table can be searched using various criteria - event name, start date, end date, names of organisators, types of sports.
+
+
+
+# Sport Events - bg
 
 ## Описание
 Sport Events е приложение, базирано на Laravel Backpack, което предоставя удобен начин за преглеждане на всякаква информация, свързана със спортни събития. Притежава лиценз - MIT.
